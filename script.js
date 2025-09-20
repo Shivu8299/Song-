@@ -1,64 +1,64 @@
 // This is your playlist. 
 const playlist = [
     {
-        title: "Song 1 Title",
-        artist: "Artist 1", // Removed from HTML, but good to keep for a playlist
-        src: "songs/Song1.mp3",
-        image: "images/Song1-art.jpg" // CHANGE THIS TO YOUR IMAGE PATH
+        title: "Jugarfiya",
+        artist: "Unknown",
+        src: "songs/Jugarfiya.mp3",
+        image: "images/Jugarfiya-art.jpg"
     },
     {
-        title: "Song 2 Title",
-        artist: "Artist 2",
-        src: "songs/Song2.mp3",
-        image: "images/Song2-art.jpg"
+        title: "Die with a smile",
+        artist: "Unknown",
+        src: "songs/Die-with-a-smile.mp3",
+        image: "images/Die-with-a-smile-art.jpg"
     },
     {
-        title: "Song 3 Title",
-        artist: "Artist 3",
-        src: "songs/Song3.mp3",
-        image: "images/Song3-art.jpg"
+        title: "Finding her",
+        artist: "Unknown",
+        src: "songs/Finding-her.mp3",
+        image: "images/Finding-her-art.jpg"
     },
     {
-        title: "Song 4 Title",
-        artist: "Artist 4",
-        src: "songs/Song4.mp3",
-        image: "images/Song4-art.jpg"
+        title: "Pal pal",
+        artist: "Unknown",
+        src: "songs/Pal-pal.mp3",
+        image: "images/Pal-pal-art.jpg"
     },
     {
-        title: "Song 5 Title",
-        artist: "Artist 5",
-        src: "songs/Song5.mp3",
-        image: "images/Song5-art.jpg"
+        title: "Kya hua tera wada",
+        artist: "Unknown",
+        src: "songs/Kya-hua-tera-wada.mp3",
+        image: "images/Kya-hua-tera-wada-art.jpg"
     },
     {
-        title: "Song 6 Title",
-        artist: "Artist 6",
-        src: "songs/Song6.mp3",
-        image: "images/Song6-art.jpg"
+        title: "Itna mujhe pyaar badha",
+        artist: "Unknown",
+        src: "songs/Itna-mujhe-pyaar-badha.mp3",
+        image: "images/Itna-mujhe-pyaar-badha-art.jpg"
     },
     {
-        title: "Song 7 Title",
-        artist: "Artist 7",
-        src: "songs/Song7.mp3",
-        image: "images/Song7-art.jpg"
+        title: "Aaj bhi",
+        artist: "Unknown",
+        src: "songs/Aaj-bhi.mp3",
+        image: "images/Aaj-bhi-art.jpg"
     },
     {
-        title: "Song 8 Title",
-        artist: "Artist 8",
-        src: "songs/Song8.mp3",
-        image: "images/Song8-art.jpg"
+        title: "Decay",
+        artist: "Unknown",
+        src: "songs/Decay.mp3",
+        image: "images/Decay-art.jpg"
     },
     {
-        title: "Song 9 Title",
-        artist: "Artist 9",
-        src: "songs/Song9.mp3",
-        image: "images/Song9-art.jpg"
+        title: "Azul",
+        artist: "Unknown",
+        src: "songs/Azul.mp3",
+        image: "images/Azul-art.jpg"
     },
     {
-        title: "Song 10 Title",
-        artist: "Artist 10",
-        src: "songs/Song10.mp3",
-        image: "images/Song10-art.jpg"
+        title: "Billo Rani",
+        artist: "Unknown",
+        src: "songs/Billo-Rani.mp3",
+        image: "images/Billo-Rani-art.jpg"
     }
 ];
 
