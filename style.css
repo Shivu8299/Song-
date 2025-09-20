@@ -1,0 +1,115 @@
+body {
+    background: #ffafbd;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    transition: background-color 0.5s ease;
+    position: relative;
+}
+
+/* Background Color Change */
+body.playing {
+    background: #ffc3a0;
+}
+
+/* Blooming Hearts Animation */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path fill="%23ffc0cb" d="M50,90 C80,70 95,40 50,10 C5,40 20,70 50,90z"/></svg>') repeat;
+    background-size: 80px 80px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease-in-out;
+}
+
+body.playing::before {
+    opacity: 1;
+    animation: pulseHearts 2s infinite alternate;
+}
+
+@keyframes pulseHearts {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+}
+
+.player-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 25px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    z-index: 1;
+}
+
+.album-art-container {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease;
+}
+
+.album-art-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.song-title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #4a4a4a;
+    margin-bottom: 2rem;
+}
+
+.progress-container {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    height: 8px;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.progress-line {
+    background: linear-gradient(to right, #ff6666, #ffafbd);
+    border-radius: 5px;
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1.8rem;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ff8080;
+    font-size: 2.2rem;
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.control-btn:hover {
+    transform: scale(1.15);
+    color: #ff6666;
+  }
