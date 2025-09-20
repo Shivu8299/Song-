@@ -1,5 +1,5 @@
 body {
-    background: #ffafbd;
+    background: #d66b86; /* A little bit darker pink */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
@@ -13,7 +13,7 @@ body {
 
 /* Background Color Change */
 body.playing {
-    background: #ffc3a0;
+    background: #ffc3a0; /* Slightly pink */
 }
 
 /* Blooming Hearts Animation */
@@ -24,7 +24,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path fill="%23ffc0cb" d="M50,90 C80,70 95,40 50,10 C5,40 20,70 50,90z"/></svg>') repeat;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><path fill="%23ffc0cb" d="M50,90 C80,70 95,40 50,10 C5,40 20,70 50,90z"/></svg>') repeat;
     background-size: 80px 80px;
     opacity: 0;
     pointer-events: none;
@@ -33,12 +33,13 @@ body::before {
 
 body.playing::before {
     opacity: 1;
-    animation: pulseHearts 2s infinite alternate;
+    animation: moveHearts 4s infinite ease-in-out alternate;
 }
 
-@keyframes pulseHearts {
-    from { transform: scale(1); }
-    to { transform: scale(1.05); }
+@keyframes moveHearts {
+    0% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.05) translate(5px, 5px); }
+    100% { transform: scale(1) translate(0, 0); }
 }
 
 .player-container {
@@ -112,4 +113,4 @@ body.playing::before {
 .control-btn:hover {
     transform: scale(1.15);
     color: #ff6666;
-  }
+}
