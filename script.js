@@ -64,6 +64,37 @@ const body = document.body;
 
 let currentSongIndex = 0;
 let isPlaying = false;
+let heartInterval; // Variable to store the interval for hearts
+
+// Function to create and animate a single heart
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    
+    // Randomize starting position horizontally
+    const startX = Math.random() * 100 + 'vw';
+    heart.style.left = startX;
+
+    // Randomize initial size
+    const size = Math.random() * 20 + 10; // Hearts between 10px and 30px
+    heart.style.width = size + 'px';
+    heart.style.height = size + 'px';
+    
+    // Adjust pseudo-elements for correct heart shape with random size
+    heart.style.setProperty('--heart-size', size + 'px');
+    heart.style.setProperty('--heart-offset', size / 2 + 'px'); // Correctly positions the lobes
+    
+    // Set unique animation duration for a natural look
+    heart.style.animationDuration = (Math.random() * 4 + 4) + 's'; // Between 4s and 8s
+    
+    body.appendChild(heart);
+
+    // Remove heart after its animation ends to prevent memory leak
+    heart.addEventListener('animationend', () => {
+        heart.remove();
+    });
+}
+
 
 // Function to load a song
 function loadSong(song) {
@@ -78,11 +109,15 @@ function playPauseSong() {
     if (isPlaying) {
         audioPlayer.pause();
         playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-        body.classList.remove('playing');
+        body.classList.remove('background-animation'); // Stop background color animation
+        clearInterval(heartInterval); // Stop creating hearts
+        // Existing hearts will naturally finish their animation and fade out
     } else {
         audioPlayer.play();
         playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        body.classList.add('playing');
+        body.classList.add('background-animation'); // Start background color animation
+        // Start creating hearts every 200ms
+        heartInterval = setInterval(createHeart, 200); 
     }
     isPlaying = !isPlaying;
 }
