@@ -61,10 +61,7 @@ body::after {
     z-index: -1;
 }
 
-
-/* --- NEW: PLAYER CONTAINER STYLES --- */
 .player-container {
-    /* Using your new image as the background */
     background: url('songcover2.jpg') no-repeat center center / cover;
     padding: 2.5rem;
     border-radius: 25px;
@@ -76,7 +73,24 @@ body::after {
     z-index: 1;
 }
 
-/* --- NEW: FREQUENCY WAVE ANIMATION --- */
+.album-art-container {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease;
+}
+
+/* FIX IS HERE */
+.album-art-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the container, cropping as needed */
+}
+
+
 .progress-container {
     background-color: #e0e0e0;
     border-radius: 5px;
@@ -85,26 +99,25 @@ body::after {
     cursor: pointer;
     margin-bottom: 2rem;
     position: relative;
-    overflow: hidden; /* This hides the overflowing wave */
+    overflow: hidden;
 }
 
 .progress-line {
-    background-color: #800000; /* Maroon Red color */
+    background-color: #800000;
     border-radius: 5px;
     height: 100%;
     width: 0%;
     transition: width 0.1s linear;
-    z-index: 2; /* Ensure the line is on top of the wave */
+    z-index: 2;
 }
 
 .frequency-wave {
     position: absolute;
     top: 0;
     left: 0;
-    width: 200%; /* Wider than the container to allow for animation */
+    width: 200%;
     height: 100%;
     
-    /* Creating the wave pattern with a linear gradient */
     background: repeating-linear-gradient(
         45deg,
         rgba(255, 255, 255, 0.3),
@@ -119,7 +132,6 @@ body::after {
     transition: opacity 0.5s ease-in-out;
 }
 
-/* This class activates the wave animation */
 .frequency-wave.playing {
     opacity: 1;
 }
@@ -129,17 +141,16 @@ body::after {
     to { background-position: 20px 0; }
 }
 
-/* --- BUTTON COLOR CHANGES --- */
 .control-btn {
     background: none;
     border: none;
     cursor: pointer;
-    color: #800000; /* Maroon Red color */
+    color: #800000;
     font-size: 2.2rem;
     transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .control-btn:hover {
     transform: scale(1.15);
-    color: #b30000; /* A slightly brighter shade on hover */
-}
+    color: #b30000;
+          }
