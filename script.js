@@ -72,7 +72,7 @@ function createHeart() {
     heart.classList.add('heart-image'); // New class for image hearts
     
     // Randomly choose between animation1.jpg and animation2.jpg
-    const heartImage = Math.random() < 0.5 ? 'Cover/animation1.jpg' : 'Cover/animation2.jpg';
+    const heartImage = Math.random() < 0.5 ? 'animation1.jpg' : 'animation2.jpg';
     heart.style.backgroundImage = `url('${heartImage}')`;
 
     // Randomize starting position horizontally
