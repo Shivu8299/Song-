@@ -1,59 +1,91 @@
 body {
-    background: #d66b86;
+    background: #d66b86; /* Dark pink initial background */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    overflow: hidden;
+    overflow: hidden; /* Important for hearts not to cause scrollbars */
     position: relative;
     
-    /* New background animation properties */
+    /* Background Color Changing Animation */
     animation: colorChange 15s infinite;
-    animation-play-state: paused;
+    animation-play-state: paused; /* Start paused */
 }
 
-/* This class tells the animation to start */
+/* This class tells the background color animation to start */
 body.background-animation {
     animation-play-state: running;
 }
 
-/* Background Color Change Animation */
+/* Background Color Changing Keyframes */
 @keyframes colorChange {
-    0%   { background: #d66b86; }   /* Dark Pink */
-    25%  { background: #ffc3a0; }   /* Light Pink */
-    50%  { background: #ffafbd; }   /* Another Pink */
-    75%  { background: #ff70a6; }   /* A bright pink */
-    100% { background: #d66b86; }   /* Back to dark pink */
+    0%   { background-color: #d66b86; }   /* Dark Pink */
+    25%  { background-color: #ffc3a0; }   /* Light Pink */
+    50%  { background-color: #ffafbd; }   /* Another Pink */
+    75%  { background-color: #ff70a6; }   /* A bright pink */
+    100% { background-color: #d66b86; }   /* Back to dark pink */
 }
 
-/* Blooming Hearts Animation */
-body::before {
+
+/* --- NEW HEART ANIMATION STYLES --- */
+.heart {
+    position: absolute;
+    bottom: -20px; /* Start hearts below the screen */
+    width: 20px;
+    height: 20px;
+    background-color: #ff4d80; /* Pink heart color */
+    transform: rotate(-45deg); /* Rotate to make it heart shape */
+    opacity: 0; /* Start invisible */
+    pointer-events: none; /* Hearts won't block clicks */
+    animation: floatUp 6s ease-out forwards; /* Float up and fade out */
+    z-index: 0; /* Behind player container */
+}
+
+.heart::before,
+.heart::after {
     content: '';
     position: absolute;
-    top: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #ff4d80;
+    border-radius: 50%; /* Top lobes of the heart */
+}
+
+.heart::before {
+    top: -10px;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><path fill="%23ffc0cb" d="M50,90 C80,70 95,40 50,10 C5,40 20,70 50,90z"/></svg>') repeat;
-    background-size: 80px 80px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 1s ease-in-out;
 }
 
-body.playing::before {
-    opacity: 1;
-    animation: moveHearts 4s infinite ease-in-out alternate;
+.heart::after {
+    top: 0;
+    left: 10px;
 }
 
-@keyframes moveHearts {
-    0% { transform: scale(1) translate(0, 0); }
-    50% { transform: scale(1.05) translate(5px, 5px); }
-    100% { transform: scale(1) translate(0, 0); }
+/* Keyframes for hearts floating up and fading out */
+@keyframes floatUp {
+    0% {
+        transform: rotate(-45deg) scale(0);
+        opacity: 0;
+        bottom: -20px;
+        filter: hue-rotate(0deg);
+    }
+    10% {
+        transform: rotate(-45deg) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: rotate(-45deg) scale(1.2);
+        opacity: 0;
+        bottom: 100vh; /* Float completely above the screen */
+        filter: hue-rotate(360deg); /* Optional: add a subtle color shift */
+    }
 }
+/* --- END NEW HEART ANIMATION STYLES --- */
 
+
+/* Player Container and other elements (mostly unchanged) */
 .player-container {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 2.5rem;
@@ -63,7 +95,7 @@ body.playing::before {
     max-width: 400px;
     width: 90%;
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Ensure player is above the hearts */
 }
 
 .album-art-container {
