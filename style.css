@@ -6,80 +6,66 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    overflow: hidden; /* Important for hearts not to cause scrollbars */
+    overflow: hidden;
     position: relative;
     
     /* Background Color Changing Animation */
-    animation: loveColorChange 15s infinite; /* Updated animation name */
-    animation-play-state: paused; /* Start paused */
+    animation: loveColorChange 15s infinite;
+    animation-play-state: paused;
 }
 
-/* This class tells the background color animation to start */
 body.background-animation {
     animation-play-state: running;
 }
 
-/* Love Theme Background Color Changing Keyframes */
 @keyframes loveColorChange {
-    0%   { background-color: #FF69B4; }   /* Hot Pink */
-    33%  { background-color: #800000; }   /* Maroon */
-    66%  { background-color: #8A2BE2; }   /* Blue Violet (Purple-ish) */
-    100% { background-color: #FF69B4; }   /* Back to Hot Pink */
+    0%   { background-color: #FF69B4; }
+    33%  { background-color: #800000; }
+    66%  { background-color: #8A2BE2; }
+    100% { background-color: #FF69B4; }
 }
 
-/* --- NEW IMAGE HEART ANIMATION STYLES --- */
+/* Heart Image Animation Styles */
 .heart-image {
     position: absolute;
-    bottom: -50px; /* Start hearts below the screen */
-    width: 40px; /* Adjust size as needed for your images */
-    height: 40px; /* Adjust size as needed for your images */
+    bottom: -50px;
+    width: 40px;
+    height: 40px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0; /* Start invisible */
-    pointer-events: none; /* Hearts won't block clicks */
-    animation: floatUpImage 8s ease-out forwards; /* Float up and fade out */
-    z-index: 0; /* Behind player container */
+    opacity: 0;
+    pointer-events: none;
+    animation: floatUpImage 8s ease-out forwards;
+    z-index: 0;
 }
 
-/* Keyframes for image hearts floating up and fading out */
 @keyframes floatUpImage {
-    0% {
-        transform: scale(0);
-        opacity: 0;
-        bottom: -50px;
-    }
-    10% {
-        transform: scale(1);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1.2);
-        opacity: 0;
-        bottom: 100vh; /* Float completely above the screen */
-    }
+    0% { transform: scale(0); opacity: 0; bottom: -50px; }
+    10% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.2); opacity: 0; bottom: 100vh; }
 }
-/* --- END NEW IMAGE HEART ANIMATION STYLES --- */
 
-/* --- Main background image --- */
-body::after { /* Using ::after for the background image behind the player */
+/* Main background image behind the player */
+body::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('songcover.jpg'); /* Updated path */
+    background-image: url('songcover.jpg');
     background-size: cover;
     background-position: center;
-    opacity: 0.2; /* Make it transparent */
-    z-index: -1; /* Ensure it's behind everything */
+    opacity: 0.2;
+    z-index: -1;
 }
 
 
-/* Player Container and other elements */
+/* --- NEW: PLAYER CONTAINER STYLES --- */
 .player-container {
-    background-color: rgba(255, 255, 255, 0.7); /* Slightly more transparent white */
+    /* Using your new image as the background */
+    background: url('songcover2.jpg') no-repeat center center / cover;
     padding: 2.5rem;
     border-radius: 25px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
@@ -87,32 +73,10 @@ body::after { /* Using ::after for the background image behind the player */
     max-width: 400px;
     width: 90%;
     position: relative;
-    z-index: 1; /* Ensure player is above the hearts and background image */
+    z-index: 1;
 }
 
-.album-art-container {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 1.5rem;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.5s ease;
-}
-
-.album-art-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.song-title {
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: #4a4a4a;
-    margin-bottom: 2rem;
-}
-
+/* --- NEW: FREQUENCY WAVE ANIMATION --- */
 .progress-container {
     background-color: #e0e0e0;
     border-radius: 5px;
@@ -121,32 +85,61 @@ body::after { /* Using ::after for the background image behind the player */
     cursor: pointer;
     margin-bottom: 2rem;
     position: relative;
+    overflow: hidden; /* This hides the overflowing wave */
 }
 
 .progress-line {
-    background: linear-gradient(to right, #ff6666, #ffafbd);
+    background-color: #800000; /* Maroon Red color */
     border-radius: 5px;
     height: 100%;
     width: 0%;
     transition: width 0.1s linear;
+    z-index: 2; /* Ensure the line is on top of the wave */
 }
 
-.controls {
-    display: flex;
-    justify-content: center;
-    gap: 1.8rem;
+.frequency-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%; /* Wider than the container to allow for animation */
+    height: 100%;
+    
+    /* Creating the wave pattern with a linear gradient */
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0.3) 10px,
+        transparent 10px,
+        transparent 20px
+    );
+    background-size: 20px 20px;
+    
+    animation: waveAnimation 2s linear infinite;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 
+/* This class activates the wave animation */
+.frequency-wave.playing {
+    opacity: 1;
+}
+
+@keyframes waveAnimation {
+    from { background-position: 0 0; }
+    to { background-position: 20px 0; }
+}
+
+/* --- BUTTON COLOR CHANGES --- */
 .control-btn {
     background: none;
     border: none;
     cursor: pointer;
-    color: #ff8080;
+    color: #800000; /* Maroon Red color */
     font-size: 2.2rem;
     transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .control-btn:hover {
     transform: scale(1.15);
-    color: #ff6666;
+    color: #b30000; /* A slightly brighter shade on hover */
 }
