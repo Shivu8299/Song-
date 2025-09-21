@@ -66,27 +66,28 @@ let currentSongIndex = 0;
 let isPlaying = false;
 let heartInterval; // Variable to store the interval for hearts
 
-// Function to create and animate a single heart
+// Function to create and animate a single heart image
 function createHeart() {
     const heart = document.createElement('div');
-    heart.classList.add('heart');
+    heart.classList.add('heart-image'); // New class for image hearts
     
-    // Randomize starting position horizontally
-    const startX = Math.random() * 100 + 'vw';
-    heart.style.left = startX;
+    // Randomly choose between animation1.jpg and animation2.jpg
+    const heartImage = Math.random() < 0.5 ? 'Cover/animation1.jpg' : 'Cover/animation2.jpg';
+    heart.style.backgroundImage = `url('${heartImage}')`;
 
-    // Randomize initial size
-    const size = Math.random() * 20 + 10; // Hearts between 10px and 30px
-    heart.style.width = size + 'px';
-    heart.style.height = size + 'px';
-    
-    // Adjust pseudo-elements for correct heart shape with random size
-    heart.style.setProperty('--heart-size', size + 'px');
-    heart.style.setProperty('--heart-offset', size / 2 + 'px'); // Correctly positions the lobes
+    // Randomize starting position horizontally
+    const startX = Math.random() * 100; // 0-100vw
+    heart.style.left = `${startX}vw`;
+
+    // Randomize initial size for variation
+    const size = Math.random() * 30 + 30; // Hearts between 30px and 60px
+    heart.style.width = `${size}px`;
+    heart.style.height = `${size}px`;
     
     // Set unique animation duration for a natural look
-    heart.style.animationDuration = (Math.random() * 4 + 4) + 's'; // Between 4s and 8s
+    heart.style.animationDuration = (Math.random() * 4 + 6) + 's'; // Between 6s and 10s
     
+    // Add heart to body
     body.appendChild(heart);
 
     // Remove heart after its animation ends to prevent memory leak
@@ -111,13 +112,12 @@ function playPauseSong() {
         playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
         body.classList.remove('background-animation'); // Stop background color animation
         clearInterval(heartInterval); // Stop creating hearts
-        // Existing hearts will naturally finish their animation and fade out
     } else {
         audioPlayer.play();
         playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
         body.classList.add('background-animation'); // Start background color animation
-        // Start creating hearts every 200ms
-        heartInterval = setInterval(createHeart, 200); 
+        // Start creating hearts every 150ms
+        heartInterval = setInterval(createHeart, 150); 
     }
     isPlaying = !isPlaying;
 }
