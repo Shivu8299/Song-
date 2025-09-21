@@ -1,5 +1,5 @@
 body {
-    background: #d66b86; /* Dark pink initial background */
+    background: #FF69B4; /* Default Pink (HotPink) */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
@@ -10,7 +10,7 @@ body {
     position: relative;
     
     /* Background Color Changing Animation */
-    animation: colorChange 15s infinite;
+    animation: loveColorChange 15s infinite; /* Updated animation name */
     animation-play-state: paused; /* Start paused */
 }
 
@@ -19,75 +19,67 @@ body.background-animation {
     animation-play-state: running;
 }
 
-/* Background Color Changing Keyframes */
-@keyframes colorChange {
-    0%   { background-color: #d66b86; }   /* Dark Pink */
-    25%  { background-color: #ffc3a0; }   /* Light Pink */
-    50%  { background-color: #ffafbd; }   /* Another Pink */
-    75%  { background-color: #ff70a6; }   /* A bright pink */
-    100% { background-color: #d66b86; }   /* Back to dark pink */
+/* Love Theme Background Color Changing Keyframes */
+@keyframes loveColorChange {
+    0%   { background-color: #FF69B4; } /* Hot Pink */
+    33%  { background-color: #FF0000; } /* Red */
+    66%  { background-color: #8A2BE2; } /* Blue Violet (Purple-ish) */
+    100% { background-color: #FF69B4; } /* Back to Hot Pink */
 }
 
-
-/* --- NEW HEART ANIMATION STYLES --- */
-.heart {
+/* --- NEW IMAGE HEART ANIMATION STYLES --- */
+.heart-image {
     position: absolute;
-    bottom: -20px; /* Start hearts below the screen */
-    width: 20px;
-    height: 20px;
-    background-color: #ff4d80; /* Pink heart color */
-    transform: rotate(-45deg); /* Rotate to make it heart shape */
+    bottom: -50px; /* Start hearts below the screen */
+    width: 40px; /* Adjust size as needed for your images */
+    height: 40px; /* Adjust size as needed for your images */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     opacity: 0; /* Start invisible */
     pointer-events: none; /* Hearts won't block clicks */
-    animation: floatUp 6s ease-out forwards; /* Float up and fade out */
+    animation: floatUpImage 8s ease-out forwards; /* Float up and fade out */
     z-index: 0; /* Behind player container */
 }
 
-.heart::before,
-.heart::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #ff4d80;
-    border-radius: 50%; /* Top lobes of the heart */
-}
-
-.heart::before {
-    top: -10px;
-    left: 0;
-}
-
-.heart::after {
-    top: 0;
-    left: 10px;
-}
-
-/* Keyframes for hearts floating up and fading out */
-@keyframes floatUp {
+/* Keyframes for image hearts floating up and fading out */
+@keyframes floatUpImage {
     0% {
-        transform: rotate(-45deg) scale(0);
+        transform: scale(0);
         opacity: 0;
-        bottom: -20px;
-        filter: hue-rotate(0deg);
+        bottom: -50px;
     }
     10% {
-        transform: rotate(-45deg) scale(1);
+        transform: scale(1);
         opacity: 0.8;
     }
     100% {
-        transform: rotate(-45deg) scale(1.2);
+        transform: scale(1.2);
         opacity: 0;
         bottom: 100vh; /* Float completely above the screen */
-        filter: hue-rotate(360deg); /* Optional: add a subtle color shift */
     }
 }
-/* --- END NEW HEART ANIMATION STYLES --- */
+/* --- END NEW IMAGE HEART ANIMATION STYLES --- */
+
+/* --- Main background image --- */
+body::after { /* Using ::after for the background image behind the player */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('Cover/songcover.jpg'); /* Path to your main background image */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2; /* Make it transparent */
+    z-index: -1; /* Ensure it's behind everything */
+}
 
 
-/* Player Container and other elements (mostly unchanged) */
+/* Player Container and other elements */
 .player-container {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.7); /* Slightly more transparent white */
     padding: 2.5rem;
     border-radius: 25px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
@@ -95,7 +87,7 @@ body.background-animation {
     max-width: 400px;
     width: 90%;
     position: relative;
-    z-index: 1; /* Ensure player is above the hearts */
+    z-index: 1; /* Ensure player is above the hearts and background image */
 }
 
 .album-art-container {
