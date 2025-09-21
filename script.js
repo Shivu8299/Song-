@@ -60,6 +60,7 @@ const songTitle = document.querySelector(".song-title");
 const albumArt = document.getElementById("album-art");
 const progressContainer = document.getElementById("progress-container");
 const progressLine = document.getElementById("progress-line");
+const frequencyWave = document.querySelector(".frequency-wave"); // NEW: Get the wave element
 const body = document.body;
 
 let currentSongIndex = 0;
@@ -69,33 +70,26 @@ let heartInterval; // Variable to store the interval for hearts
 // Function to create and animate a single heart image
 function createHeart() {
     const heart = document.createElement('div');
-    heart.classList.add('heart-image'); // New class for image hearts
+    heart.classList.add('heart-image');
     
-    // Randomly choose between animation1.jpg and animation2.jpg
     const heartImage = Math.random() < 0.5 ? 'animation1.jpg' : 'animation2.jpg';
     heart.style.backgroundImage = `url('${heartImage}')`;
 
-    // Randomize starting position horizontally
-    const startX = Math.random() * 100; // 0-100vw
+    const startX = Math.random() * 100;
     heart.style.left = `${startX}vw`;
 
-    // Randomize initial size for variation
-    const size = Math.random() * 30 + 30; // Hearts between 30px and 60px
+    const size = Math.random() * 30 + 30;
     heart.style.width = `${size}px`;
     heart.style.height = `${size}px`;
     
-    // Set unique animation duration for a natural look
-    heart.style.animationDuration = (Math.random() * 4 + 6) + 's'; // Between 6s and 10s
+    heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
     
-    // Add heart to body
     body.appendChild(heart);
 
-    // Remove heart after its animation ends to prevent memory leak
     heart.addEventListener('animationend', () => {
         heart.remove();
     });
 }
-
 
 // Function to load a song
 function loadSong(song) {
@@ -110,14 +104,15 @@ function playPauseSong() {
     if (isPlaying) {
         audioPlayer.pause();
         playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-        body.classList.remove('background-animation'); // Stop background color animation
-        clearInterval(heartInterval); // Stop creating hearts
+        body.classList.remove('background-animation');
+        frequencyWave.classList.remove('playing'); // Stop wave animation
+        clearInterval(heartInterval);
     } else {
         audioPlayer.play();
         playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        body.classList.add('background-animation'); // Start background color animation
-        // Start creating hearts every 150ms
-        heartInterval = setInterval(createHeart, 150); 
+        body.classList.add('background-animation');
+        frequencyWave.classList.add('playing'); // Start wave animation
+        heartInterval = setInterval(createHeart, 150);
     }
     isPlaying = !isPlaying;
 }
