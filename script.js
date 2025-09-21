@@ -1,53 +1,53 @@
 const playlist = [
     {
+        title: "Ehsaas",
+        src: "Song/song1.mp3",
+        image: "Cover/Song1-art.jpg"
+    },
+    {
         title: "Jugarfiya",
-        src: "songs/song1.mp3",
-        image: "images/Song1-art.jpg"
+        src: "Song/song2.mp3",
+        image: "Cover/Song2-art.jpg"
     },
     {
         title: "Die with a smile",
-        src: "songs/song2.mp3",
-        image: "images/Song2-art.jpg"
+        src: "Song/song3.mp3",
+        image: "Cover/Song3-art.jpg"
     },
     {
         title: "Finding her",
-        src: "songs/song3.mp3",
-        image: "images/Song3-art.jpg"
+        src: "Song/song4.mp3",
+        image: "Cover/Song4-art.jpg"
     },
     {
         title: "Pal pal",
-        src: "songs/song4.mp3",
-        image: "images/Song4-art.jpg"
+        src: "Song/song5.mp3",
+        image: "Cover/Song5-art.jpg"
     },
     {
         title: "Kya hua tera wada",
-        src: "songs/song5.mp3",
-        image: "images/Song5-art.jpg"
+        src: "Song/song6.mp3",
+        image: "Cover/Song6-art.jpg"
     },
     {
         title: "Itna mujhe pyaar badha",
-        src: "songs/song6.mp3",
-        image: "images/Song6-art.jpg"
+        src: "Song/song7.mp3",
+        image: "Cover/Song7-art.jpg"
     },
     {
         title: "Aaj bhi",
-        src: "songs/song7.mp3",
-        image: "images/Song7-art.jpg"
+        src: "Song/song8.mp3",
+        image: "Cover/Song8-art.jpg"
     },
     {
         title: "Decay",
-        src: "songs/song8.mp3",
-        image: "images/Song8-art.jpg"
+        src: "Song/song9.mp3",
+        image: "Cover/Song9-art.jpg"
     },
     {
         title: "Azul",
-        src: "songs/song9.mp3",
-        image: "images/Song9-art.jpg"
-    },
-    {
-        title: "Billo Rani",
-        src: "songs/song10.mp3",
-        image: "images/Song10-art.jpg"
+        src: "Song/song10.mp3",
+        image: "Cover/Song10-art.jpg"
     }
 ];
 
