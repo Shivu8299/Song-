@@ -1,5 +1,5 @@
 body {
-    background: #d66b86; /* A little bit darker pink */
+    background: #d66b86;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
@@ -7,13 +7,25 @@ body {
     min-height: 100vh;
     margin: 0;
     overflow: hidden;
-    transition: background-color 0.5s ease;
     position: relative;
+    
+    /* New background animation properties */
+    animation: colorChange 15s infinite;
+    animation-play-state: paused;
 }
 
-/* Background Color Change */
-body.playing {
-    background: #ffc3a0; /* Slightly pink */
+/* This class tells the animation to start */
+body.background-animation {
+    animation-play-state: running;
+}
+
+/* Background Color Change Animation */
+@keyframes colorChange {
+    0%   { background: #d66b86; }   /* Dark Pink */
+    25%  { background: #ffc3a0; }   /* Light Pink */
+    50%  { background: #ffafbd; }   /* Another Pink */
+    75%  { background: #ff70a6; }   /* A bright pink */
+    100% { background: #d66b86; }   /* Back to dark pink */
 }
 
 /* Blooming Hearts Animation */
